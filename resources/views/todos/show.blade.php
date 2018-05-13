@@ -7,4 +7,12 @@
    <hr>
    <p>{{$Todo->body}}</p>
    <a href="/" class="btn btn-primary">Back</a>
+   {{Form::open(['action' => ['todosController@destroy',$Todo->id],'method' => 'POST'])}}
+      <div class="form-group">
+          {{Form::submit('Delete Todo', ['class' => 'btn btn-danger'])}}
+     </div>
+     <div class="form-group">
+            {{ Form::hidden('_method', 'DELETE') }}
+    </div>
+  {{Form::close()}}
 @endsection
