@@ -73,7 +73,8 @@ class todosController extends Controller
      */
     public function edit($id)
     {
-        //
+        $todo = Todo::find($id);
+        return view('todos.edit')->with('Todo',$todo);
     }
 
     /**
@@ -85,7 +86,15 @@ class todosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+         //Create Todo
+        $todo = new Todo;
+        $todo->text = $request->input('text');
+        $todo->body = $request->input('body');
+        $todo->timeleft = $request->input('due');
+
+        $todo->save();
+
+        return redirect('/')->with('success','Todo updated Successfully');
     }
 
     /**
